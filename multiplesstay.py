@@ -18,9 +18,9 @@ def count_outcomes(dice):
     # print(count_outcomes)
 
 def multiples_stay(p1,p2):
-    player_a = 0
-    player_b = 0
-    while player_a < 10 and player_b < 10:
+    player_a_score = 0
+    player_b_score = 0
+    while player_a_score < 10 and player_b_score < 10:
         player_a_roll = count_outcomes(roll())
         print(f"{p1} rolls {player_a_roll}")
         keep = int(input(f"{p1}, which outcome would you like to keep? "))
@@ -28,12 +28,12 @@ def multiples_stay(p1,p2):
         print(f"{p2} rolls {player_b_roll}")
         keep = int(input(f"{p2}, which outcome would you like to keep? "))
         if player_a_roll[keep] > player_b_roll[keep]:
-            player_a += 1
+            player_a_score += 1
             print(f"{p1} wins the round!")
         else:
-            player_b += 1
+            player_b_score += 1
             print(f"{p2} wins the round!")
-    if player_a == 10:
+    if player_a_score == 10:
         print(f"{p2} wins the game!")   
     else:
         print(f"{p2} wins the game!")
@@ -46,3 +46,8 @@ multiples_stay("Shawn", "Gus")
 # see i can understand how this would be enjoyable from a brain teaser aspect but i wish it was like a person instead of ai
 # i will take the suggestion of making the dice pool a list thank u copliot
 # still i wish i could like do this with my dad 
+
+# def not gonna get done today (thursday) but i'll have like all class friday to work on it
+
+# prob gonna have to do same thing with the turns and for end if it's a players turn when no more mulitples they lose
+# but that's gonna be a problem for me tomorrow bc there's three minutes left in class
