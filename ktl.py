@@ -20,9 +20,9 @@ def score(dice):
     return sum(dice)
 
 def keep_the_lowest(p1,p2):
-    player_one = 0
-    player_two = 0
-    while player_one < 20 and player_two < 20:
+    player_one_score = 0
+    player_two_score = 0
+    while player_one_score < 20 and player_two_score < 20:
         player_one_roll = keep_lowest(roll())
         print(f"{p1} keeps {player_one_roll}")
         player_one_roll = score(roll())
@@ -32,12 +32,12 @@ def keep_the_lowest(p1,p2):
         player_two_roll = score(roll())
         print(f"{p2} rolls {player_two_roll}")
         if player_one_roll < player_two_roll:
-            player_two += 1
+            player_two_score += 1
             print(f"{p2} wins the round!")
         else:
-            player_one += 1
+            player_one_score += 1
             print(f"{p1} wins the round!")
-    if player_one == 20:
+    if player_one_score == 20:
         print(f"{p1} wins the game!")
     else:
         print(f"{p2} wins the game!")
@@ -52,3 +52,7 @@ keep_the_lowest("Shawn", "Gus")
 # if nothing else this class is increasing my respect for my dad who does this for work
 # is this what it's like trying to get a toddler/young child to understand things
 # maybe that's why dad's so good at explaining things like board game rules
+
+# on second thought i think this one is probably fine bc it's just chance and the computer will probably always do the same thing as a person
+# like there's no strategy it's just luck
+# so i'm gonna leave it
