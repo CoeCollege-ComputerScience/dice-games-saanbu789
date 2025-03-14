@@ -10,33 +10,55 @@
 
 import random
 
-def roll():
-    return [random.randint(1,6) for i in range(10)]
+def roll(numdice):
+    return [random.randint(1,6) for i in range(numdice)]
 
 def count_outcomes(dice):
     return {i: dice.count(i) for i in dice}
     # print(count_outcomes)
 
 def multiples_stay(p1,p2):
-    player_a_score = 0
-    player_b_score = 0
-    while player_a_score < 10 and player_b_score < 10:
-        player_a_roll = count_outcomes(roll())
-        print(f"{p1} rolls {player_a_roll}")
-        keep = int(input(f"{p1}, which outcome would you like to keep? "))
-        player_b_roll = count_outcomes(roll())
-        print(f"{p2} rolls {player_b_roll}")
-        keep = int(input(f"{p2}, which outcome would you like to keep? "))
-        if player_a_roll[keep] > player_b_roll[keep]:
-            player_a_score += 1
-            print(f"{p1} wins the round!")
+    dicepool=roll(10)
+    playeraturn=True
+
+    while len(dicepool) > 0:
+        if playeraturn:
+         player_a_roll = count_outcomes(dicepool)
+         print(f"{p1} rolls {player_a_roll}")
+         keep = int(input(f"{p1}, which outcome would you like to keep? "))
+         dicepool=[die for die in dicepool if die != keep]
+        #  if len(dicepool) == 0: 
+        #     print(f"{p1} wins the game!") 
+         if all(count==1 for count in count_outcomes(dicepool).values()):
+            print(f"{p1} has no multiples left, {p2} wins the game!")
+            break
+        # this indentation not working is driving me insane WHAT DO YOU MEAN UNEXPECTED MY GUY
+        # might need to ask dad over break if i dont talk to hughes today
+        # nvm fixed it (finally) (only to not need that bit lol)
+         else:      
+            playeraturn = not playeraturn
         else:
-            player_b_score += 1
-            print(f"{p2} wins the round!")
-    if player_a_score == 10:
-        print(f"{p2} wins the game!")   
-    else:
-        print(f"{p2} wins the game!")
+            player_b_roll = count_outcomes(dicepool)
+            print(f"{p2} rolls {player_b_roll}")
+            keep = int(input(f"{p2}, which outcome would you like to keep? "))
+            dicepool=[die for die in dicepool if die != keep]
+        # if len(dicepool) == 0:
+        #     print(f"{p2} wins the game!")
+        if all(count==1 for count in count_outcomes(dicepool).values()):
+            print(f"{p2} has no multiples left, {p1} wins the game!")
+            break
+
+    #     if player_a_roll.get(keep,0) > player_b_roll(keep,0):
+    #         player_a_score += 1
+    #         print(f"{p1} wins the round!")
+    #     else:
+    #         player_b_score += 1
+    #         print(f"{p2} wins the round!")
+
+    # if player_a_score == 10:
+    #     print(f"{p2} wins the game!")   
+    # else:
+    #     print(f"{p2} wins the game!")
 
 # time to see if this'll work
 
@@ -51,3 +73,11 @@ multiples_stay("Shawn", "Gus")
 
 # prob gonna have to do same thing with the turns and for end if it's a players turn when no more mulitples they lose
 # but that's gonna be a problem for me tomorrow bc there's three minutes left in class
+
+# thanks copilot for telling me how to do this
+# let's see if it'll work 
+# nyokay this needs more work
+# i think other than the dam indentation it's mostly good
+# ok got the indentation let's see if it'll be nice and work
+# alright so removing the dice works now to get it so that game ends if there are no multiples
+# ok changes made time to test
