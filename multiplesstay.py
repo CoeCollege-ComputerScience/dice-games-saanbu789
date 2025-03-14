@@ -31,7 +31,7 @@ def multiples_stay(p1,p2):
         #     print(f"{p1} wins the game!") 
          if all(count==1 for count in count_outcomes(dicepool).values()):
             print(f"{p1} has no multiples left, {p2} wins the game!")
-            break
+            
         # this indentation not working is driving me insane WHAT DO YOU MEAN UNEXPECTED MY GUY
         # might need to ask dad over break if i dont talk to hughes today
         # nvm fixed it (finally) (only to not need that bit lol)
@@ -44,9 +44,10 @@ def multiples_stay(p1,p2):
             dicepool=[die for die in dicepool if die != keep]
         # if len(dicepool) == 0:
         #     print(f"{p2} wins the game!")
-        if all(count==1 for count in count_outcomes(dicepool).values()):
-            print(f"{p2} has no multiples left, {p1} wins the game!")
-            break
+            if all(count==1 for count in count_outcomes(dicepool).values()):
+             print(f"{p2} has no multiples left, {p1} wins the game!")
+
+             
 
     #     if player_a_roll.get(keep,0) > player_b_roll(keep,0):
     #         player_a_score += 1
@@ -81,3 +82,6 @@ multiples_stay("Shawn", "Gus")
 # ok got the indentation let's see if it'll be nice and work
 # alright so removing the dice works now to get it so that game ends if there are no multiples
 # ok changes made time to test
+# gotta figure out the rolls bc each turn it's not rerolling the remaining dice
+# and that'll be a problem for me over break, might need to email in order to get 4 for assignment
+# and over break i'll be able to bug dad about it
